@@ -11,4 +11,5 @@ public class Pedido {
     private Integer pedidoId;
     private Integer clienteId;
     private Integer precio;
+    private Item items[];
 }
