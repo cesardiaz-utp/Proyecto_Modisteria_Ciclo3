@@ -1,11 +1,11 @@
-package co.utp.misiontic.g12e1.proyectomodisteria.modelo.dao;
+package co.utp.misiontic.g12e1.proyectomodisteria.model.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.utp.misiontic.g12e1.proyectomodisteria.modelo.Categoria;
-import co.utp.misiontic.g12e1.proyectomodisteria.modelo.Producto;
+import co.utp.misiontic.g12e1.proyectomodisteria.model.Categoria;
+import co.utp.misiontic.g12e1.proyectomodisteria.model.Producto;
 import co.utp.misiontic.g12e1.proyectomodisteria.util.JDBCUtilities;
 
 public class ProductoDAO {
@@ -13,7 +13,7 @@ public class ProductoDAO {
         var listaProductos = new ArrayList<Producto>();
 
         var statement = JDBCUtilities.getConnection().createStatement();
-        var rset = statement.executeQuery("SELECT MAX(id) AS id FROM Pedido");
+        var rset = statement.executeQuery("SELECT * FROM Producto");
 
         try {
             while (rset.next()) {
@@ -22,7 +22,7 @@ public class ProductoDAO {
                         rset.getString("Nombre"),
                         rset.getInt("Precio"),
                         rset.getString("Descripcion"));
-                var categorias=listarCategorias(p.getId());
+                listaProductos.add(p);
             }
         } finally {
             if(statement!=null){
@@ -32,22 +32,20 @@ public class ProductoDAO {
                 rset.close();
             }
         }
-        return null;
+        return listaProductos;
     }
 
     public void listarColegio() {
 
     }
 
-    public List<Categoria>listarCategorias(Integer id) throws SQLException{
+    public List<Categoria>listarCategorias(Integer[] id) throws SQLException{
 
         var listaCategorias = new ArrayList<Categoria>();
 
-        var pstatement = JDBCUtilities.getConnection().prepareStatement("
-                                SELECT * FROM Producto JOIN Tag USING (ID_Producto) JOIN Categoria USING(ID_Categoria) 
-                                WHERE");
+        var pstatement = JDBCUtilities.getConnection().prepareStatement("SELECT * FROM Producto JOIN Tag USING (ID_Producto) JOIN Categoria USING(ID_Categoria)WHERE");
         pstatement.setInt(1, id);
-        var rset = statement.executeQuery("SELECT MAX(id) AS id FROM Pedido");
+        var rset = pstatement.executeQuery("SELECT MAX(id) AS id FROM Pedido");
 
         try {
             while (rset.next()) {
@@ -59,8 +57,8 @@ public class ProductoDAO {
                 var categorias=listarCategorias(p.getId());
             }
         } finally {
-            if(statement!=null){
-                statement.close();
+            if(pstatement!=null){
+                pstatement.close();
             }
             if(rset!=null){
                 rset.close();
