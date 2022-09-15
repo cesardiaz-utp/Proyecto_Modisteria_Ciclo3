@@ -1,9 +1,13 @@
 package co.utp.misiontic.g12e1.proyectomodisteria.model.entity;
 
+
+import javax.persistence.Entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
