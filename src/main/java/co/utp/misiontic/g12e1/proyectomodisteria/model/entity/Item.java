@@ -1,4 +1,4 @@
-package co.utp.misiontic.g12e1.proyectomodisteria.model;
+package co.utp.misiontic.g12e1.proyectomodisteria.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
