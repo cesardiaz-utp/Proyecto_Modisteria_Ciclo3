@@ -30,7 +30,13 @@ public class Categoria {
     private String descripcion;
 
     //-------RELACIONES
-    @ManyToMany
+    @ManyToMany(mappedBy="categorias")
     private List<Producto> productos;
+
+    //-------CONSTRUCTOR
+    public Categoria(Long id,String name) {
+        this.idCategoria = id;
+        this.name = name;
+    }
         
 }

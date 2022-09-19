@@ -28,6 +28,6 @@ public class Talla {
     private String talla;
 
     //-------RELACIONES
-    @ManyToMany
+    @ManyToMany(mappedBy="tallas")
     private List<Producto> productos;
 }

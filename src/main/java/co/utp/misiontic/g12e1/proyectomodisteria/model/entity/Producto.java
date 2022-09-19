@@ -36,19 +36,26 @@ public class Producto {
 
     //-------RELACIONES
     @ManyToMany
-    @JoinTable(name = "Categoria",
+    @JoinTable(name = "Tag",
     joinColumns=@JoinColumn(name="ID_Producto"),
     inverseJoinColumns=@JoinColumn(name="ID_Categoria"))
     private List<Categoria> categorias;
 
-    @JoinTable(name = "Talla",
+    @ManyToMany
+    @JoinTable(name = "Molde",
     joinColumns=@JoinColumn(name="ID_Producto"),
     inverseJoinColumns=@JoinColumn(name="ID_Talla"))
-    @ManyToMany
     private List<Talla> tallas;
 
     
-    @OneToMany(mappedBy = "idProducto")
+    @OneToMany(mappedBy = "id.producto")
     private List<Item> compras;
+
+    //-------CONSTRUCTOR
+    public Producto(Long id, String name, Integer precio ){
+        this.idProducto=id;
+        this.name = name;
+        this.precio = precio;
+    }
     
 }

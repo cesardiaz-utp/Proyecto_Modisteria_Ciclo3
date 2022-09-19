@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -34,6 +33,6 @@ public class Pedido {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "idPedido")
+    @OneToMany(mappedBy = "id.pedido")
     private List<Item> listaItems;
 }

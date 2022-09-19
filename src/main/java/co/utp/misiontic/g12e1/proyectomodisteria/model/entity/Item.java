@@ -1,36 +1,47 @@
 package co.utp.misiontic.g12e1.proyectomodisteria.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import co.utp.misiontic.g12e1.proyectomodisteria.model.entity.PK.ItemId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@IdClass(ItemId.class)
+// @IdClass(ItemId.class)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+// @Table(uniqueConstraints={@UniqueConstraint(columnNames = {"pedido" , "producto"})})
+public class Item implements Serializable{
 
-    @Id
-    private Long idPedido;
+    @Embeddable
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    static class ItemPk implements Serializable {
+        //-------RELACIONES
+        @ManyToOne
+        @JoinColumn(name = "id_producto")
+        private Producto producto;
 
-    @Id
-    private Integer idProducto;
+        @ManyToOne
+        @JoinColumn(name = "id_pedido")
+        private Pedido pedido;
 
-    @Column(name = "Cantidad", nullable = false)
+    }
+
+    @EmbeddedId
+    private ItemPk id;
+
+    @Column(nullable = false)
     private Integer cantidad;
 
-    //-------RELACIONES
-
-    @ManyToOne
-    private Pedido pedido;
-    @ManyToOne
-    private Producto producto;
+    
 }
