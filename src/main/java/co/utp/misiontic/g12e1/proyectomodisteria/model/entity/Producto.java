@@ -30,7 +30,7 @@ public class Producto {
     private String name;
     @Column(name = "Precio", nullable = false, length = 100)
     private Integer precio;
-    @Column(name = "Descripcion" , nullable = false , length = 255)
+    @Column(name = "Descripcion" , length = 255)
     private String descripcion;
     
 
