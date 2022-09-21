@@ -27,7 +27,7 @@ public class CatalogoServiceImpl implements CatalogoService{
         var productos = productoRepository.findAll(Sort.by("name"));
         
         return productos.stream()
-                .map(p->new ProductoDto(p.getIdProducto().intValue(), p.getName(), p.getPrecio()))
+                .map(p->new ProductoDto(p.getIdProducto().intValue(), p.getPrecio(), p.getName()))
                 .collect(Collectors.toList());
     }
 
