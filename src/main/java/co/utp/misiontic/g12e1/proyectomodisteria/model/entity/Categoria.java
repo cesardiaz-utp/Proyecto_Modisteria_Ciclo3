@@ -34,8 +34,7 @@ public class Categoria {
     private List<Producto> productos;
 
     //-------CONSTRUCTOR
-    public Categoria(Long id,String name) {
-        this.idCategoria = id;
+    public Categoria(String name) {
         this.name = name;
     }
         
