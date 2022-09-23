@@ -26,7 +26,7 @@ public class Pedido {
     private Long idPedido;
     
     @Column(name="Precio", nullable = false)
-    private Integer precio;
+    private Double precio;
 
     
     //-------RELACIONES
