@@ -48,8 +48,8 @@ public class App {
 
 		private void loadProducto(){
 			productoRepository.saveAll(Arrays.asList(
-				new Producto (10001L, "Pantalon Diario", 50),
-				new Producto (10002L, "Camisa Fisica", 30)
+				new Producto ("Pantalon Diario", 50.0, "img/product-4.jpg"),
+				new Producto ("Camisa Fisica", 30.0, "img/product-5.jpg")
 			));
 		}
 	}

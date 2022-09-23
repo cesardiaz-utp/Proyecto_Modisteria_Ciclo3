@@ -29,9 +29,11 @@ public class Producto {
     @Column(name = "Nombre" , nullable = false , length = 100)
     private String name;
     @Column(name = "Precio", nullable = false, length = 100)
-    private Integer precio;
+    private Double precio;
     @Column(name = "Descripcion" , length = 255)
     private String descripcion;
+    @Column(name = "Imagen", length = 100)
+    private String imageUrl;
     
 
     //-------RELACIONES
@@ -52,10 +54,10 @@ public class Producto {
     private List<Item> compras;
 
     //-------CONSTRUCTOR
-    public Producto(Long id, String name, Integer precio ){
-        this.idProducto=id;
+    public Producto(String name, Double precio, String imageUrl ){
         this.name = name;
         this.precio = precio;
+        this.imageUrl= imageUrl;
     }
     
 }

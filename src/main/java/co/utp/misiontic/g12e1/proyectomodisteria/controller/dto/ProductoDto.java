@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductoDto {
     private Integer id;
-    private Integer precio;
+    private Double precio;
     private String nombre;
-    // private String imgUrl;
+    private String imageUrl;
     
 }
