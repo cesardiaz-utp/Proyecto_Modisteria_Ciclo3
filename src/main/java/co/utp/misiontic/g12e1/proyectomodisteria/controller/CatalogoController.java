@@ -31,10 +31,11 @@ public class CatalogoController {
     public String goToShop(Model modelo){
 
 
-        var productos = Arrays.asList(
-            new ProductoDto(1001,50.0,"CAMISA TEST","img/product-4.jpg")
-        );
-
+        // var productos = Arrays.asList(
+        //     new ProductoDto(1001,50.0,"CAMISA TEST","img/product-4.jpg"),
+        //     new ProductoDto(1002,50.0,"CAMISA TEST","img/product-4.jpg")
+        // );
+        var productos = catService.getProductos();
         modelo.addAttribute("productos", productos);
         modelo.addAttribute("page", "shop");
 
