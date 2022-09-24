@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
 
 import co.utp.misiontic.g12e1.proyectomodisteria.model.entity.Categoria;
 import co.utp.misiontic.g12e1.proyectomodisteria.model.entity.Producto;
@@ -18,6 +19,7 @@ public class App {
 		SpringApplication.run(App.class, args);
 	}
 
+	@Component	
 	private class DataLoader implements CommandLineRunner {
 
 		private ProductoRepository productoRepository;
@@ -25,6 +27,7 @@ public class App {
 
 		@Override
 		public void run(String... args) throws Exception {
+			System.out.println("-----LOAD DATA----------");
 			loadData();
 
 		}
