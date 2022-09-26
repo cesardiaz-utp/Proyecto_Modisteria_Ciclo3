@@ -6,10 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import co.utp.misiontic.g12e1.proyectomodisteria.controller.dto.CheckFiltroDto;
 import co.utp.misiontic.g12e1.proyectomodisteria.controller.dto.FiltroDto;
-import co.utp.misiontic.g12e1.proyectomodisteria.controller.dto.FiltroItemDto;
+import co.utp.misiontic.g12e1.proyectomodisteria.controller.dto.FiltroRequest;
 import co.utp.misiontic.g12e1.proyectomodisteria.controller.dto.ProductoDto;
 import co.utp.misiontic.g12e1.proyectomodisteria.service.CatalogoService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,24 +34,52 @@ public class CatalogoController {
         return "index";
     }
 
-    @RequestMapping("/shop")
+    @GetMapping("/shop")
     public String goToShop(Model modelo) {
+        System.out.println("get?");
 
+        List<ProductoDto> productos;
+        productos = catService.getProductos();
+        modelo.addAttribute("productos", productos);
+
+        var filtros = Arrays.asList(
+
+                new FiltroDto("Colegios", Arrays.asList(
+                        new CheckFiltroDto("colegioa", "Colegio A", "colegio-a"),
+                        new CheckFiltroDto("colegiob", "Colegio B", "colegio-b"))),
+                new FiltroDto("Producto", Arrays.asList(
+                        new CheckFiltroDto("pantalon", "Pantalon", "pantalon"),
+                        new CheckFiltroDto("camisa", "Camisa", "camisa"),
+                        new CheckFiltroDto("otros", "Otros", "otros"))),
+                new FiltroDto("Tipo de Uniforme", Arrays.asList(
+                        new CheckFiltroDto("diario", "Diario", "diario"),
+                        new CheckFiltroDto("fisica", "Fisica", "fisica"))));
+        modelo.addAttribute("filtros", filtros);
+
+        modelo.addAttribute("page", "shop");
+
+        return "shop";
+    }
+    @PostMapping("/shop")
+    public String goToShopa(@RequestBody FiltroRequest formBody, Model modelo) {
+
+        System.out.println(formBody.isColegioa());
+        
         var productos = catService.getProductos();
         modelo.addAttribute("productos", productos);
 
         var filtros = Arrays.asList(
-                    
+
                 new FiltroDto("Colegios", Arrays.asList(
-                        new FiltroItemDto("colegio-1","Colegio A", "Colegio A"),
-                        new FiltroItemDto("colegio-2","Colegio B", "Colegio B"))),
+                        new CheckFiltroDto("colegioa", "Colegio A", "colegio-a"),
+                        new CheckFiltroDto("colegiob", "Colegio B", "colegio-b"))),
                 new FiltroDto("Producto", Arrays.asList(
-                        new FiltroItemDto("producto-1","Pantalon", "Pantalon"),
-                        new FiltroItemDto("producto-2","Camisa", "Camisa"),
-                        new FiltroItemDto("producto-3","Otros", "Otros"))),
+                        new CheckFiltroDto("pantalon", "Pantalon", "pantalon"),
+                        new CheckFiltroDto("camisa", "Camisa", "camisa"),
+                        new CheckFiltroDto("otros", "Otros", "otros"))),
                 new FiltroDto("Tipo de Uniforme", Arrays.asList(
-                        new FiltroItemDto("tipo-1","Diario", "Diario"),
-                        new FiltroItemDto("tipo-2","Fisica", "Fisica"))));
+                        new CheckFiltroDto("diario", "Diario", "diario"),
+                        new CheckFiltroDto("fisica", "Fisica", "fisica"))));
         modelo.addAttribute("filtros", filtros);
 
         modelo.addAttribute("page", "shop");

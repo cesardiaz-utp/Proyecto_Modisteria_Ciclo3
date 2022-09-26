@@ -84,18 +84,24 @@
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-12">
                 <!-- TEST Start -->
-                <div class=" mb-4 pb-4" th:each="filtro,iterStat :${filtros}" th:classappend="${!iterStat.last}? 'border-bottom'">
-                    <h5 class="font-weight-semi-bold mb-4" th:inline="text"> Filtrar por [[${filtro.nombre}]]</h5>
-                    <form>
+                <form id="filtros" action="">
+                    <div th:each="filtro,iterStat :${filtros}"
+                        th:classappend="${!iterStat.last}? 'border-bottom mb-4 pb-4' : 'mb-5'">
+                        <h5 class="font-weight-semi-bold mb-4" th:inline="text"> Filtrar por [[${filtro.nombre}]]</h5>
+
                         <div th:each="item : ${filtro.items}"
                             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" th:name = "${filtro.nombre}" class="custom-control-input" th:id="${item.id}">
-                            <label class="custom-control-label" th:for="${item.id}" th:text="${item.etiqueta}">All Price</label>
+                            <input type="checkbox" th:name="${item.id}" class="custom-control-input"
+                                th:value="${item.valor}" th:id="${item.id}">
+                            <label class="custom-control-label" th:for="${item.id}" th:text="${item.etiqueta}">All
+                                Price</label>
                             <span class="badge border font-weight-normal">1000</span>
                         </div>
-                        
-                    </form>
-                </div>
+
+
+                    </div>
+                </form>
+
                 <!-- TEST End -->
                 <!-- Price Start -->
                 <!-- <div class="border-bottom mb-4 pb-4">
@@ -239,9 +245,11 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search by name">
                                     <div class="input-group-append">
-                                        <span class="input-group-text bg-transparent text-primary">
+
+                                        <button type="submit" form="filtros"
+                                            class="input-group-text bg-transparent text-primary">
                                             <i class="fa fa-search"></i>
-                                        </span>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -302,7 +310,9 @@
                         <div class="card product-item border-0 mb-4">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" th:src="${producto.imageUrl != null ? producto.imageUrl : '/img/noimage.jpg' }" alt="">
+                                <img class="img-fluid w-100"
+                                    th:src="${producto.imageUrl != null ? producto.imageUrl : '/img/noimage.jpg' }"
+                                    alt="">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                 <!-- NOMBRE -->
@@ -379,6 +389,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/catalogo.js"></script>
+
 </body>
 
 </html>

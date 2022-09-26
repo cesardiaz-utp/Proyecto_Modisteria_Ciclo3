@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class FiltroDto {
 
     private String nombre;
-    private List<FiltroItemDto> items;
+    private List<CheckFiltroDto> items;
 
 }

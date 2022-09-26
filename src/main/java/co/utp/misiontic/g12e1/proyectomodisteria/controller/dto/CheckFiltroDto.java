@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class FiltroItemDto {
+public class CheckFiltroDto {
 
     private String id;
     private String etiqueta;
