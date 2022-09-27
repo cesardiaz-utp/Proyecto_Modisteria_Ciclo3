@@ -48,7 +48,7 @@ public class CatalogoController {
                 new FiltroDto("Producto", Arrays.asList(
                         new CheckFiltroDto("filtro", "Pantalon", "pantalon"),
                         new CheckFiltroDto("filtro", "Camisa", "camisa"),
-                        new CheckFiltroDto("filtros", "Otros", "otros"))),
+                        new CheckFiltroDto("filtro", "Otros", "otros"))),
                 new FiltroDto("Tipo de Uniforme", Arrays.asList(
                         new CheckFiltroDto("filtro", "Diario", "diario"),
                         new CheckFiltroDto("filtro", "Fisica", "fisica"))));
