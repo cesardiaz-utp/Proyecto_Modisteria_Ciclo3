@@ -37,16 +37,18 @@ public class App {
 			// loadProducto();
 		}
 
+		
+
 		private void loadCategories() {
 			categoriaRepository.saveAll(Arrays.asList(
-					new Categoria("Pantalon"),
-					new Categoria("Camisa"),
-					new Categoria("Otros"),
-					new Categoria("Colegio A"),
-					new Categoria("Colegio B"),
-					new Categoria("Fisica"),
-					new Categoria("Diario"),
-					new Categoria("Preescolar")));
+					new Categoria(1001L,"Pantalon"),
+					new Categoria(1002L,"Camisa"),
+					new Categoria(1003L,"Otros"),
+					new Categoria(1004L,"Colegio A"),
+					new Categoria(1005L,"Colegio B"),
+					new Categoria(1006L,"Fisica"),
+					new Categoria(1007L,"Diario"),
+					new Categoria(1008L,"Preescolar")));
 		}
 
 		private void loadProducto(){

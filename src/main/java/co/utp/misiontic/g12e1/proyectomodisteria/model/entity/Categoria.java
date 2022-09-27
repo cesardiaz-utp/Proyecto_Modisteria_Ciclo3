@@ -37,5 +37,10 @@ public class Categoria {
     public Categoria(String name) {
         this.name = name;
     }
+
+    public Categoria(Long id, String name) {
+        this.idCategoria = id;
+        this.name = name;
+    }
         
 }
