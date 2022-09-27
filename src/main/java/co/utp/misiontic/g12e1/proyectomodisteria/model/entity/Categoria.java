@@ -1,9 +1,11 @@
 package co.utp.misiontic.g12e1.proyectomodisteria.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +23,7 @@ public class Categoria {
 
     @Id
     @Column(name = "ID_Categoria")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCategoria;
 
     @Column(name = "Nombre", nullable = false , length = 100)
@@ -30,12 +32,16 @@ public class Categoria {
     private String descripcion;
 
     //-------RELACIONES
-    @ManyToMany(mappedBy="categorias")
-    private List<Producto> productos;
+    @ManyToMany(mappedBy="categorias", fetch = FetchType.EAGER)
+    private List<Producto> productos = new ArrayList<>();;
 
     //-------CONSTRUCTOR
     public Categoria(String name) {
         this.name = name;
+    }
+
+    public Categoria (Long idCategoria){
+        this.idCategoria = idCategoria;
     }
 
     public Categoria(Long id, String name) {

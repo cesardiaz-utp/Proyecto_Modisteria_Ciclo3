@@ -1,9 +1,11 @@
 package co.utp.misiontic.g12e1.proyectomodisteria.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,13 +23,13 @@ public class Talla {
 
     @Id
     @Column(name = "ID_Talla")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTalla;
 
     @Column(name = "Nombre" , nullable = false , length = 10)
     private String talla;
 
     //-------RELACIONES
-    @ManyToMany(mappedBy="tallas")
-    private List<Producto> productos;
+    @ManyToMany(mappedBy="tallas", fetch = FetchType.EAGER)
+    private List<Producto> productos= new ArrayList<>();;
 }

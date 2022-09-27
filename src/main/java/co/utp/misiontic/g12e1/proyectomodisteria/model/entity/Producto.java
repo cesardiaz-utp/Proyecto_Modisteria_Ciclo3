@@ -1,9 +1,12 @@
 package co.utp.misiontic.g12e1.proyectomodisteria.model.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class Producto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProducto;
 
     @Column(name = "Nombre" , nullable = false , length = 100)
@@ -41,13 +44,13 @@ public class Producto {
     @JoinTable(name = "Tag",
     joinColumns=@JoinColumn(name="ID_Producto"),
     inverseJoinColumns=@JoinColumn(name="ID_Categoria"))
-    private List<Categoria> categorias;
+    private List<Categoria> categorias= new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "Molde",
     joinColumns=@JoinColumn(name="ID_Producto"),
     inverseJoinColumns=@JoinColumn(name="ID_Talla"))
-    private List<Talla> tallas;
+    private List<Talla> tallas= new ArrayList<>();;
 
     
     @OneToMany(mappedBy = "id.producto")
@@ -58,6 +61,14 @@ public class Producto {
         this.name = name;
         this.precio = precio;
         this.imageUrl= imageUrl;
+    }
+
+    public Producto(Long id, String name, Double precio, String imageUrl, List<Categoria> categorias){
+        this.idProducto=id;
+        this.name = name;
+        this.precio = precio;
+        this.imageUrl= imageUrl;
+        this.categorias=categorias;
     }
     
 }
