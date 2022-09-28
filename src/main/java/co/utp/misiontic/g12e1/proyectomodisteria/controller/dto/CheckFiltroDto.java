@@ -7,8 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class CheckFiltroDto {
 
-    private String id;
-    private String etiqueta;
-    private String valor;
+    // private String id;
+    private String name;
+    private String tag;
+    private String value;
 
 }
