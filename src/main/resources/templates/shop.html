@@ -75,16 +75,16 @@
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-12">
                 <!-- TEST Start -->
-                <form id="filtros" action="">
+                <form id="filtros">
                     <div th:each="filtro,iterStat :${filtros}"
                         th:classappend="${!iterStat.last}? 'border-bottom mb-4 pb-4' : 'mb-5'">
                         <h5 class="font-weight-semi-bold mb-4" th:inline="text"> Filtrar por [[${filtro.nombre}]]</h5>
 
                         <div th:each="item : ${filtro.items}"
                             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" th:name="${item.id}" class="custom-control-input"
-                                th:value="${item.valor}" th:id="${item.id}">
-                            <label class="custom-control-label" th:for="${item.id}" th:text="${item.etiqueta}">All
+                            <input type="checkbox" th:name="${item.name}" class="custom-control-input"
+                                th:value="${item.value}" th:id="${item.value}">
+                            <label class="custom-control-label" th:for="${item.value}" th:text="${item.tag}">All
                                 Price</label>
                             <span class="badge border font-weight-normal">1000</span>
                         </div>

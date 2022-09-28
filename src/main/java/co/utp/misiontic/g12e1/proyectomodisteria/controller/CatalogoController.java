@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.utp.misiontic.g12e1.proyectomodisteria.controller.dto.CheckFiltroDto;
@@ -33,9 +35,9 @@ public class CatalogoController {
     }
 
     @GetMapping("/shop")
-    public String goToShop(@ModelAttribute FiltroRequest filtroRequest,Model modelo) {
-        System.out.println("get?");
-        
+    public String goToShop(@ModelAttribute FiltroRequest filtroRequest, Model modelo) {
+        System.out.println(filtroRequest.getFiltros());
+
         List<ProductoDto> productos;
         productos = catService.getProductos();
         modelo.addAttribute("productos", productos);
@@ -59,25 +61,26 @@ public class CatalogoController {
         return "shop";
     }
     // @PostMapping("/shop")
-    // public String goToShopa(@RequestBody FiltroRequest formBody, Model modelo) {
+    // public String goToShopa(@RequestBody FiltroRequest filtroRequest, Model modelo) {
 
-    //     System.out.println(formBody.isColegioa());
-        
-    //     var productos = catService.getProductos();
+    //     System.out.println(filtroRequest.getFiltros().get(0));
+
+    //     List<ProductoDto> productos;
+    //     productos = catService.getProductos();
     //     modelo.addAttribute("productos", productos);
 
     //     var filtros = Arrays.asList(
 
     //             new FiltroDto("Colegios", Arrays.asList(
-    //                     new CheckFiltroDto("colegioa", "Colegio A", "colegio-a"),
-    //                     new CheckFiltroDto("colegiob", "Colegio B", "colegio-b"))),
+    //                     new CheckFiltroDto("filtro", "Colegio A", "col-a"),
+    //                     new CheckFiltroDto("filtro", "Colegio B", "col-b"))),
     //             new FiltroDto("Producto", Arrays.asList(
-    //                     new CheckFiltroDto("pantalon", "Pantalon", "pantalon"),
-    //                     new CheckFiltroDto("camisa", "Camisa", "camisa"),
-    //                     new CheckFiltroDto("otros", "Otros", "otros"))),
+    //                     new CheckFiltroDto("filtro", "Pantalon", "pantalon"),
+    //                     new CheckFiltroDto("filtro", "Camisa", "camisa"),
+    //                     new CheckFiltroDto("filtro", "Otros", "otros"))),
     //             new FiltroDto("Tipo de Uniforme", Arrays.asList(
-    //                     new CheckFiltroDto("diario", "Diario", "diario"),
-    //                     new CheckFiltroDto("fisica", "Fisica", "fisica"))));
+    //                     new CheckFiltroDto("filtro", "Diario", "diario"),
+    //                     new CheckFiltroDto("filtro", "Fisica", "fisica"))));
     //     modelo.addAttribute("filtros", filtros);
 
     //     modelo.addAttribute("page", "shop");
