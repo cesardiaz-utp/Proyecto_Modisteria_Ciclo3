@@ -1,34 +1,19 @@
+const form = document.querySelector('#filtros');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const request = new XMLHttpRequest();
+    request.open("POST", "/shop");
+    request.send(formData);
+});
+
 const loadProductByFilter = () => {
-    // const filtroEscuela = document.querySelector("input[name='escuela']:checked").value;
-    // const filtroGenero = document.querySelector("input[name='genero']:checked".value);
-    // const filtroTipo =  document.querySelector("input[name='tipo']:checked").value;
-    //const  filtroClase = document.querySelector("input[name='diario']:checked
-    const filtroEscuela = "Escuela A";
-    const filtroGenero = "Femenino";
-    const filtroTipo =  "Camisa";
-    const filtroClase = "Fisica";
-    
-    var filtros = {};
 
-    if (filtroEscuela!==undefined) {
-        filtros["filtroEscuela"]=filtroEscuela;
-    }   
-    if (filtroGenero!==undefined) {
-        filtros["filtroGenero"]=filtroGenero;
-    }
-    if (filtroTipo!==undefined) {
-        filtros["filtroTipo"]=filtroTipo;
-    }
-    if(filtroClase!==undefined){
-        filtros["filtroClase"]=filtroClase;
-
-    }
-    console.log(filtros);
-    updateCatalog(filtros);
-
+    console.log("boton funciona");
 }
 
-const filtros = async(filtros)=>{
+const filtros = async (filtros) => {
     const url = "/api/catalogo/filter";
     const response = await fetch(url, {
         method: "POST",
@@ -38,8 +23,8 @@ const filtros = async(filtros)=>{
         }
     });
 
-    if(filtros.ok){
-        
+    if (filtros.ok) {
+
     }
 
 

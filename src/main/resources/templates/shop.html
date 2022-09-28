@@ -43,17 +43,8 @@
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
 
-            <!-- NAVBAR - categories -->
-            <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
-                    data-toggle="collapse" href="#navbar-vertical"
-                    style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Categories</h6>
-                    <i class="fa fa-angle-down text-dark"></i>
-                </a>
-                <!-- navbar insert -->
-                <nav th:insert="layout/navbar :: navbar-categories"></nav>
-            </div>
+            <!-- NAVBAR - categories -->            
+            <div th:replace="layout/navbar :: navbar-categories"></div>
 
             <div class="col-lg-9">
                 <!-- NAVBAR- barra de navegacion a otras paginas-->
@@ -83,8 +74,28 @@
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-12">
+                <!-- TEST Start -->
+                <form id="filtros">
+                    <div th:each="filtro,iterStat :${filtros}"
+                        th:classappend="${!iterStat.last}? 'border-bottom mb-4 pb-4' : 'mb-5'">
+                        <h5 class="font-weight-semi-bold mb-4" th:inline="text"> Filtrar por [[${filtro.nombre}]]</h5>
+
+                        <div th:each="item : ${filtro.items}"
+                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" th:name="${item.name}" class="custom-control-input"
+                                th:value="${item.value}" th:id="${item.value}">
+                            <label class="custom-control-label" th:for="${item.value}" th:text="${item.tag}">All
+                                Price</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+
+
+                    </div>
+                </form>
+
+                <!-- TEST End -->
                 <!-- Price Start -->
-                <div class="border-bottom mb-4 pb-4">
+                <!-- <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
                     <form>
                         <div
@@ -123,16 +134,17 @@
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
-                </div>
+                </div> -->
                 <!-- Price End -->
 
                 <!-- Color Start -->
-                <div class="border-bottom mb-4 pb-4">
+                <!-- <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
                     <form>
                         <div
                             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
+                            <input type="checkbox" class="custom-control-input" checked id="color-all"
+                            th:each="filtro: ${filtros}">
                             <label class="custom-control-label" for="price-all">All Color</label>
                             <span class="badge border font-weight-normal">1000</span>
                         </div>
@@ -166,11 +178,11 @@
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
-                </div>
+                </div> -->
                 <!-- Color End -->
 
                 <!-- Size Start -->
-                <div class="mb-5">
+                <!-- <div class="mb-5">
                     <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
                     <form>
                         <div
@@ -209,7 +221,7 @@
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
-                </div>
+                </div> -->
                 <!-- Size End -->
             </div>
             <!-- Shop Sidebar End -->
@@ -224,9 +236,11 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search by name">
                                     <div class="input-group-append">
-                                        <span class="input-group-text bg-transparent text-primary">
+
+                                        <button type="submit" form="filtros"
+                                            class="input-group-text bg-transparent text-primary">
                                             <i class="fa fa-search"></i>
-                                        </span>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -287,7 +301,9 @@
                         <div class="card product-item border-0 mb-4">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" th:src="${producto.imageUrl != null ? producto.imageUrl : '/img/noimage.jpg' }" alt="">
+                                <img class="img-fluid w-100"
+                                    th:src="${producto.imageUrl != null ? producto.imageUrl : '/img/noimage.jpg' }"
+                                    alt="">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                 <!-- NOMBRE -->
@@ -364,6 +380,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/catalogo.js"></script>
+
 </body>
 
 </html>

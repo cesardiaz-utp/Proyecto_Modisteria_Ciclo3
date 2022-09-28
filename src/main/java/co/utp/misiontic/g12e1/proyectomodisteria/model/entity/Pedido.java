@@ -1,5 +1,6 @@
 package co.utp.misiontic.g12e1.proyectomodisteria.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPedido;
     
     @Column(name="Precio", nullable = false)
@@ -34,5 +35,5 @@ public class Pedido {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "id.pedido")
-    private List<Item> listaItems;
+    private List<Item> listaItems= new ArrayList<>();;
 }
